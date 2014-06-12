@@ -1,0 +1,13 @@
+! Xterm config - Gustav Wiberg
+*customization: 		-color
+XTerm*termName:	    	screen-256color-bce
+XTerm*background:       rgb:0B/10/22
+!XTerm*background:       black
+XTerm*foreground:       white
+XTerm*cursorColor:      white
+!XTerm*font:             *-fixed-*-*-*-24-*
+XTerm.vt100.geometry:   79x25
+XTerm*scrollBar:        false
+XTerm*scrollTtyOutput:  false
+xterm*faceName:         DejaVu Sans Mono Book
+xterm*faceSize:         9
