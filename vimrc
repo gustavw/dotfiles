@@ -12,8 +12,12 @@ syntax enable
 " Auto update .vimrc
 autocmd! bufwritepost .vimrc source %
 
-" 
+"
 filetype plugin on
+
+"  set vertical and horizonatal splits
+set splitright
+set splitbelow
 
 " Assaign new leaderkey ','
 let mapleader=","
@@ -33,7 +37,6 @@ set tw=79 " width of document
 set nowrap " don't automatically wrap on load
 set fo-=t " don't automatically wrap text when typing
 set colorcolumn=80
-highlight ColorColumn ctermbg=233
 
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
@@ -49,6 +52,8 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 "let g:solarized_termcolors=256
 colorscheme blackboard
 
+" Set ColorColumn to a dark color
+highlight ColorColumn ctermbg=235
 
 " Easier formatting of paragraphs
 vmap Q gq
@@ -76,6 +81,20 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Python specific part
+map <F5> :w ! python3<CR>
+
+" Size col and row of buffer.
+nmap <leader>w+ :vertical res +1<cr> 
+nmap <leader>w- :vertical res -1<cr> 
+nmap <leader>h+ :vertical res +1<cr> 
+nmap <leader>h- :vertical res -1<cr> 
+nmap ^[< :vertical res -1^M
+
+" Install  plugin in (~/.vim/compiler)
+" git clone git://github.com/vim-scripts/.vim.git
+"autocmd FileType python compiler 
+
 " Setup Pathogen to manage your plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
 " curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
@@ -90,6 +109,29 @@ call pathogen#infect()
 " cd ~/.vim/bundle
 " git clone git://github.com/Lokaltog/vim-powerline.git
 set laststatus=2
+
+" RNLD specific plugins
+" Set pydoc to open in a vertical split 'vnew' and search word marked by cursor
+let g:pydoc_version = 'pydoc3.4'
+nmap <leader>d :call Rnldvimdev(
+    \ 'vnew',
+    \ '__pydoc__',
+    \ "r ! " . g:pydoc_version . ' ' . expand('<cword>'))
+    \ <cr> 
+
+" Set python interpreter to execute in a split vnew
+nmap <leader><F5> :call Rnldvimdev(
+    \ 'vnew',
+    \ '__python__',
+    \ "r ! python3 " . @%)
+    \ <cr> 
+
+" Setup pylint
+nmap <leader>l :call Rnldvimdev(
+    \ 'vnew',
+    \ '__pylint__',
+    \ "r ! pylint " . @%)
+    \ <cr> 
 
 
 " Settings for ctrlp
@@ -106,22 +148,22 @@ set wildignore+=*/coverage/*
 " git clone https://github.com/klen/python-mode
 
 " Make pyhton3 as default
-let g:pymode_python = 'python3'
+"let g:pymode_python = 'python3'
 
 "let g:pymode_doc = 1
 "let g:pymode_doc_bind = 'K'
 
-map <Leader>g :call RopeGotoDefinition()<CR>
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_extended_complete = 1
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builtin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-let g:pymode_folding = 0
-let g:pymode_rope_guess_project=0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"map <Leader>g :call RopeGotoDefinition()<CR>
+"let ropevim_enable_shortcuts = 1
+"let g:pymode_rope_goto_def_newwin = "vnew"
+"let g:pymode_rope_extended_complete = 1
+"let g:pymode_breakpoint = 0
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_builtin_objs = 0
+"let g:pymode_syntax_builtin_funcs = 0
+"let g:pymode_folding = 0
+"let g:pymode_rope_guess_project=0
+"map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
