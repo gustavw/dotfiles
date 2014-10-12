@@ -20,7 +20,7 @@ vnoremap <leader><F5> :call Get_visual_selection() <bar>
         \ "r ! python3 /tmp/rnld_vim_tmp " . @%)
         \ <cr>
 
-nmap <F9>
+nnoremap <F9>
     \ :call inputsave() <bar>
     \ :let name = input('Enter a notebook name: ') . '.ipynb' <bar>
     \ :call inputrestore() <bar>
@@ -34,7 +34,7 @@ vnoremap <F9>
     \ :call Create_ipython_notebook('/tmp/rnld_vim_tmp', name)<CR>
 
 " Print pylint output in new buffer
-nmap <leader>l :call Rnldvimdev(
+nnoremap <leader>l :silent call Rnldvimdev(
 \ 'vnew',
 \ '__pylint__',
 \ "r ! pylint " . @%)
@@ -42,7 +42,7 @@ nmap <leader>l :call Rnldvimdev(
 
 " Run python help i new buffer
 let g:pydoc_version = 'pydoc3.4'
-nmap <leader>d :call Rnldvimdev(
+nnoremap <leader>d :silent call Rnldvimdev(
 \ 'vnew',
 \ '__pydoc__',
 \ "r ! " . g:pydoc_version . ' ' . expand('<cword>'))

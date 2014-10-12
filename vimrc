@@ -85,4 +85,6 @@ call pathogen#infect()
 set laststatus=2
 " RNLD specific plugins
 source ~/.vimrc_py " python
+" RNLD Postgres scritps
+source ~/.vimrc_psql
 

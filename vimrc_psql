@@ -1,0 +1,16 @@
+" Global connection variables
+let g:psql_address = 'localhost'
+let g:psql_port = 5432
+let g:psql_username = 'gustavwiberg'
+let g:psql_database = 'sthlm_vim'
+
+nnoremap <F10> :exec "! psql -h " . g:psql_address . " -p " . g:psql_port
+    \ . " -U " . g:psql_username . " -d " . g:psql_database . " -f "
+    \ . @%<CR>
+
+" Run only visually selected code
+vnoremap <F10> :call Get_visual_selection() <bar>
+    \ :exec "! psql -h " . g:psql_address . " -p " . g:psql_port
+    \ . " -U " . g:psql_username . " -d " . g:psql_database . " -f "
+    \ . '/tmp/rnld_vim_tmp'<CR>
+
