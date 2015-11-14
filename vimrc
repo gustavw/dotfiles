@@ -84,7 +84,7 @@ call pathogen#infect()
 " git clone git://github.com/Lokaltog/vim-powerline.git
 set laststatus=2
 " RNLD specific plugins
-source ~/.vimrc_py " python
+source ~/dotfiles/vimrc_py " python
 " RNLD Postgres scritps
-source ~/.vimrc_psql
+"source ~/.vimrc_psql
 
