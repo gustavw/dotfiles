@@ -86,5 +86,5 @@ set laststatus=2
 " RNLD specific plugins
 source ~/dotfiles/vimrc_py " python
 " RNLD Postgres scritps
-"source ~/.vimrc_psql
+source ~/dotfiles/vimrc_psql
 
