@@ -1,6 +1,7 @@
 " Python enviroments
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
+let g:loaded_python_provider = 1
 
 " General setup
 filetype plugin indent on
@@ -120,6 +121,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'https://github.com/lisposter/vim-blackboard.git'
+Plug 'tpope/vim-vividchalk'
 Plug 'JuliaEditorSupport/julia-vim'
 " Language server protocol specific
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -153,10 +155,10 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 " Set color scheme
-let g:solarized_termcolors=256
-let g:solarized_termtrans = 1
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans = 1
 set background=dark
-colorscheme solarized
+colorscheme vividchalk
 " Languate Server Protocol specific config
 set hidden
 
@@ -169,7 +171,8 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['cargo', 'run', '--release', '--manifest-path=/opt/rls/Cargo.toml'],
     \ 'javascript': ['/opt/javascript-typescript-langserver/lib/language-server-stdio.js'],
     \ 'python': ['pyls'],
-    \ 'julia': ['julia -e "using LanguageServer"']
+    \ 'julia': ['julia -e "using LanguageServer"'],
+    \ 'haskell': ['hie', '--lsp', '-d', '-l', '/tmp/hie.log']
     \ }
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
