@@ -1,5 +1,11 @@
+" Install vim-Plug
+" $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Install neovim module python3
+" pip3 install neovim
+"
 " Python enviroments
-let g:python2_host_prog = '/usr/local/bin/python'
+let g:python2_host_prog = '/usr/local/bin/python2'
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:loaded_python_provider = 1
 
