@@ -40,6 +40,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 colorscheme blackboard
 " Set ColorColumn to a dark color
 highlight ColorColumn ctermbg=235
+highlight Normal ctermfg=White
 " Easier formatting of paragraphs
 vmap Q gq
 nmap Q gqap
@@ -61,6 +62,15 @@ set smartcase
 set nobackup
 set nowritebackup
 set noswapfile
+" Ruler and matching parantacies
+set showmatch           " Show matching brackets.
+set showmode            " Show current mode.
+set ruler               " Show the line and column numbers of the cursor.
+set cursorline          " Show cursur the whole line
+set formatoptions+=o    " Continue comment marker in new lines.
+set textwidth=0         " Hard-wrap long lines as you type them.
+
+
 
 " Size col and row of buffer.
 nmap <leader>w+ :vertical res +1<cr>
