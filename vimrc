@@ -1,3 +1,7 @@
+" Install vim-plug
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
@@ -71,28 +75,43 @@ set formatoptions+=o    " Continue comment marker in new lines.
 set textwidth=0         " Hard-wrap long lines as you type them.
 
 
-
 " Size col and row of buffer.
 nmap <leader>w+ :vertical res +1<cr>
 nmap <leader>w- :vertical res -1<cr>
 nmap <leader>h+ :vertical res +1<cr>
 nmap <leader>h- :vertical res -1<cr>
 nmap ^[< :vertical res -1^M
-" Install plugin in (~/.vim/compiler)
-" git clone git://github.com/vim-scripts/.vim.git
-"autocmd FileType python compiler
-" Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
-" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
-call pathogen#infect()
-" ============================================================================
-" Python IDE Setup
-" ============================================================================
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
+
+" vim-plug
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'https://github.com/lisposter/vim-blackboard.git'
+
+call plug#end()
+
+" Airline plugin settings
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
+let g:airline_theme = 'jellybeans'
+
+" Set color scheme
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans = 1
+"set background=dark
+"colorscheme blackboard
+" Languate Server Protocol specific config
+set hidden
+
 " RNLD specific plugins
 source ~/dotfiles/vimrc_py " python
 " RNLD Postgres scritps
