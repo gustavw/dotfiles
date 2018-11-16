@@ -28,9 +28,13 @@ set clipboard=unnamed
 " Mouse & backspace
 set mouse=a
 set number "show line number
-set tw=79 " width of document
-set nowrap " don't automatically wrap on load
-set fo-=t " don't automatically wrap text when typing
+set tw=0 " width of document
+"set nowrap " don't automatically wrap on load
+"set fo-=t " don't automatically wrap text when typing
+set wrapmargin=0
+set wrap
+set linebreak
+"set columns=80
 set colorcolumn=80
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
@@ -72,7 +76,6 @@ set showmode            " Show current mode.
 set ruler               " Show the line and column numbers of the cursor.
 set cursorline          " Show cursur the whole line
 set formatoptions+=o    " Continue comment marker in new lines.
-set textwidth=0         " Hard-wrap long lines as you type them.
 
 
 " Size col and row of buffer.
@@ -83,12 +86,15 @@ nmap <leader>h- :vertical res -1<cr>
 nmap ^[< :vertical res -1^M
 
 " vim-plug
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'https://github.com/lisposter/vim-blackboard.git'
-
+Plug 'rust-lang/rust.vim'
+Plug 'w0rp/ale'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " Airline plugin settings
@@ -113,7 +119,31 @@ let g:airline_theme = 'jellybeans'
 set hidden
 
 " RNLD specific plugins
-source ~/dotfiles/vimrc_py " python
-" RNLD Postgres scritps
-source ~/dotfiles/vimrc_psql
+" Close nerdtree after a file is selected
+let NERDTreeQuitOnOpen = 1
+
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! ToggleFindNerd()
+  if IsNERDTreeOpen()
+    exec ':NERDTreeToggle'
+  else
+    exec ':NERDTreeFind'
+  endif
+endfunction
+
+" CtrlP using ripgrep
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" If nerd tree is closed, find current file, if open, close it
+nmap <silent> <leader>f <ESC>:call ToggleFindNerd()<CR>
+nmap <silent> <leader>F <ESC>:NERDTreeToggle<CR>
+
+set statusline=%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)
 
