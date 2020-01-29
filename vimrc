@@ -95,6 +95,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'w0rp/ale'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " Airline plugin settings
