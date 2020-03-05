@@ -15,6 +15,8 @@ syntax enable
 autocmd! bufwritepost .vimrc source %
 "
 filetype plugin on
+" Disable sound
+set visualbell
 " set vertical and horizonatal splits
 set splitright
 set splitbelow
@@ -24,10 +26,11 @@ let g:mapleader=","
 nmap <leader>w :w!<cr>
 " Better copy & paste
 set pastetoggle=<F2>
-set clipboard=unnamed
+set clipboard=unnamedplus
 " Mouse & backspace
 set mouse=a
 set number "show line number
+noremap <F3> :set invnumber<CR>
 set tw=0 " width of document
 "set nowrap " don't automatically wrap on load
 "set fo-=t " don't automatically wrap text when typing
@@ -75,6 +78,7 @@ set showmatch           " Show matching brackets.
 set showmode            " Show current mode.
 set ruler               " Show the line and column numbers of the cursor.
 set cursorline          " Show cursur the whole line
+hi CursorLine   cterm=bold ctermbg=darkblue ctermfg=lightgreen
 set formatoptions+=o    " Continue comment marker in new lines.
 
 
@@ -85,12 +89,17 @@ nmap <leader>h+ :vertical res +1<cr>
 nmap <leader>h- :vertical res -1<cr>
 nmap ^[< :vertical res -1^M
 
-" vim-plug
+" Tab commands
+nmap <leader>t :tabnew <cr>
+nmap <leader>T :tabclose <cr>
+
+" Install plugins
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'https://github.com/lisposter/vim-blackboard.git'
+Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'w0rp/ale'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -147,4 +156,16 @@ nmap <silent> <leader>f <ESC>:call ToggleFindNerd()<CR>
 nmap <silent> <leader>F <ESC>:NERDTreeToggle<CR>
 
 set statusline=%f\ %h%w%m%r\ %=%(%l,%c%V\ %=\ %P%)
+
+" jedi
+let g:jedi#use_tabs_not_buffers = 0  " use buffers instead of tabs
+let g:jedi#show_call_signatures = "1"
+let g:jedi#goto_command = "<localleader>gt"
+let g:jedi#goto_assignments_command = "<localleader>ga"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<localleader>u"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+
 
