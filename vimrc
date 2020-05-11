@@ -13,6 +13,8 @@ imap <right> <nop>
 syntax enable
 " Auto update .vimrc
 autocmd! bufwritepost .vimrc source %
+" Tmux fix
+set guicursor=
 "
 filetype plugin on
 " Disable sound
@@ -27,6 +29,7 @@ nmap <leader>w :w!<cr>
 " Better copy & paste
 set pastetoggle=<F2>
 set clipboard=unnamedplus
+" WSL NeoVIM # sudo ln -s /mnt/d/Neovim/bin/win32yank.exe /usr/bin/win32yank
 " Mouse & backspace
 set mouse=a
 set number "show line number
@@ -168,4 +171,18 @@ let g:jedi#usages_command = "<localleader>u"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+" Exit terminal insert mode
+:tnoremap <Esc> <C-\><C-n>
 
