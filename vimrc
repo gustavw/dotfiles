@@ -45,13 +45,15 @@ set colorcolumn=80
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 au InsertLeave * match ExtraWhitespace /\s\+$/
 " Color scheme
 " mkdir -p ~/.vim/colors && cd ~/.vim/colors
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 "set t_Co=256
 "let g:solarized_termcolors=256
-colorscheme blackboard
+"let g:colors_name="summerfruit256"
+"colorscheme blackboard
 " Set ColorColumn to a dark color
 highlight ColorColumn ctermbg=235
 highlight Normal ctermfg=White
@@ -80,8 +82,14 @@ set noswapfile
 set showmatch           " Show matching brackets.
 set showmode            " Show current mode.
 set ruler               " Show the line and column numbers of the cursor.
+hi LineNr ctermfg=darkgrey ctermbg=None
+hi CursorLineNr ctermbg=white
 set cursorline          " Show cursur the whole line
-hi CursorLine   cterm=bold ctermbg=darkblue ctermfg=lightgreen
+hi clear CursorLine
+"hi CursorLine   cterm=bold ctermbg=darkblue ctermfg=lightgreen
+"hi CursorLine gui=underline cterm=underline ctermfg=None
+hi CursorLine   cterm=bold ctermbg=None ctermfg=None
+"hi CursorLineNR cterm=bold ctermfg=black ctermbg=white
 set formatoptions+=o    " Continue comment marker in new lines.
 
 
@@ -102,6 +110,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'https://github.com/lisposter/vim-blackboard.git'
+Plug 'https://github.com/vim-scripts/summerfruit256.vim.git'
 Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'w0rp/ale'
@@ -128,6 +137,8 @@ let g:airline_theme = 'jellybeans'
 "let g:solarized_termtrans = 1
 "set background=dark
 "colorscheme blackboard
+let g:colors_name="summerfruit256"
+colorscheme summerfruit256
 " Languate Server Protocol specific config
 set hidden
 
@@ -184,5 +195,6 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Exit terminal insert mode
-:tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
+noremap <leader>b :buffers<CR>:buffer<Space>
 
